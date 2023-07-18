@@ -1,22 +1,16 @@
 import 'package:fcts_flutter_starter/base/stateful_page.dart';
+import 'package:fcts_flutter_starter/base/stateless_page.dart';
 import 'package:fcts_flutter_starter/screens/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulPage {
-  const LoginScreen({super.key});
-
-  @override
-  StatefulPageState createState() => LoginScreenState();
-}
-
-class LoginScreenState extends StatefulPageState {
-  var loginBloc = LoginBloc();
+class LoginScreen extends StatelessPage<LoginBloc> {
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(
-      bloc: loginBloc,
+      bloc: bloc,
       listenWhen: (previous, current) => current is LoginActionState,
       buildWhen: (previous, current) => current is! LoginActionState,
       listener: (context, state) {
@@ -48,17 +42,17 @@ class LoginScreenState extends StatefulPageState {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                          loginBloc.add(LoginWithGoogleClickedEvent());
+                          bloc.add(LoginWithGoogleClickedEvent());
                         },
                         child: Text("Login with Google")),
                     ElevatedButton(
                         onPressed: () {
-                          loginBloc.add(LoginWithFacebookClickedEvent());
+                          bloc.add(LoginWithFacebookClickedEvent());
                         },
                         child: Text("Login with Facebook")),
                     ElevatedButton(
                         onPressed: () {
-                          loginBloc.add(LoginWithAppleClickedEvent());
+                          bloc.add(LoginWithAppleClickedEvent());
                         },
                         child: Text("Login with Apple")),
                   ],

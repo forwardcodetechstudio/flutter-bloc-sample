@@ -27,7 +27,7 @@ class AppRouter {
           name: PAGES.login.screenName,
           builder: (context, state) => LoginScreen()),
     ],
-    errorBuilder: (context, state) => const Error404Screen(),
+    errorBuilder: (context, state) => Error404Screen(),
   );
 
   static GoRouter get router => _router;
