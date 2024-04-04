@@ -1,6 +1,4 @@
-import 'package:fcts_flutter_starter/services/impl/base_api_service_impl.dart';
 import 'package:fcts_flutter_starter/services/interfaces/auth_service.dart';
-import 'package:fcts_flutter_starter/services/interfaces/base_api_service.dart';
 
 class AuthServiceImpl extends AuthService {
   @override
