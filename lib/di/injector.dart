@@ -1,3 +1,6 @@
+import 'package:fcts_flutter_starter/network/api_service.dart';
+import 'package:fcts_flutter_starter/network/api_service_impl.dart';
+import 'package:fcts_flutter_starter/network/dio_api_client.dart';
 import 'package:fcts_flutter_starter/screens/login/bloc/login_bloc.dart';
 import 'package:fcts_flutter_starter/services/impl/auth_service_impl.dart';
 import 'package:fcts_flutter_starter/services/interfaces/auth_service.dart';
@@ -15,7 +18,11 @@ Future<void> initDependencies() async {
 }
 
 void registerServices() {
-  injector.registerLazySingleton<AuthService>(AuthServiceImpl.new);
+  final dioApiClient = DioApiClient();
+  injector
+    ..registerLazySingleton<ApiService>(() => ApiServiceImpl(dioApiClient))
+    ..registerLazySingleton<AuthService>(
+        () => AuthServiceImpl(apiService: injector.get<ApiService>()));
 }
 
 void registerBlocs() {

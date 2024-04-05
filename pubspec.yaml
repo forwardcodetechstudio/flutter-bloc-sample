@@ -16,7 +16,8 @@ dependencies:
   intl: ^0.18.0
   go_router:
   get_it:
-  flutter_dotenv: ^5.1.0 
+  flutter_dotenv: ^5.1.0
+  dio: 
 
 dev_dependencies:
   bloc_test: ^9.1.1

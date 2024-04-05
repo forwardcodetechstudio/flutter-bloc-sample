@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
-class LoginBloc extends BaseBloc<LoginEvent,LoginState> {
+class LoginBloc extends BaseBloc<LoginEvent, LoginState> {
   LoginBloc(this.authService) : super(LoginInitial()) {
     on<LoginWithGoogleClickedEvent>(loginWithGoogleClickedEvent);
     on<LoginWithFacebookClickedEvent>(loginWithFacebookClickedEvent);
@@ -21,14 +21,18 @@ class LoginBloc extends BaseBloc<LoginEvent,LoginState> {
     // print("loginWithGoogleClickedEvent");
 
     emit(LoginInProgressState());
-    // print("LoginInProgressState");
 
-    await Future.delayed(const Duration(seconds: 3));
-    emit(LoginSuccessfulState());
-    // print("LoginInProgressState");
-    await Future.delayed(const Duration(seconds: 2));
-    emit(LoginErrorState());
-    // print("LoginInProgressState");
+    final apiResponse = await authService.doLogin(
+      'google',
+      email: 'abc@gmail.com',
+      password: '123456',
+    );
+
+    if (apiResponse.data != null) {
+      emit(LoginSuccessfulState());
+    } else {
+      emit(LoginErrorState());
+    }
   }
 
   FutureOr<void> loginWithAppleClickedEvent(
