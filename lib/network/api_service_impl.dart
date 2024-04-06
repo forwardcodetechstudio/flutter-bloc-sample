@@ -11,6 +11,7 @@ class ApiServiceImpl implements ApiService {
   Future<Response<dynamic>> delete(
     String url, {
     Map<String?, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
   }) {
     return apiClient.delete(url);
   }
@@ -19,6 +20,7 @@ class ApiServiceImpl implements ApiService {
   Future<Response<dynamic>> get(
     String url, {
     Map<String?, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
   }) {
     return apiClient.get(url);
   }
@@ -27,6 +29,7 @@ class ApiServiceImpl implements ApiService {
   Future<Response<dynamic>> post(
     String url, {
     Map<String?, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
   }) {
     return apiClient.post(url);
   }
@@ -35,6 +38,7 @@ class ApiServiceImpl implements ApiService {
   Future<Response<dynamic>> put(
     String url, {
     Map<String?, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
   }) {
     return apiClient.put(url);
   }
