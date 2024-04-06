@@ -25,26 +25,60 @@ class DioApiClient extends BaseApiClient {
   }
 
   @override
-  Future<Response<dynamic>> delete(String url,
-      {Map<String, dynamic>? parameters}) {
+  Future<Response<dynamic>> delete(
+    String url, {
+    Map<String, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
+  }) {
+    // adding runtime headers
+    headers?.forEach((key, value) {
+      dio.options.headers.putIfAbsent(key!, () => value);
+    });
+
     return dio.delete(url);
   }
 
   @override
-  Future<Response<dynamic>> get(String url,
-      {Map<String, dynamic>? parameters}) {
-    return dio.get(url, queryParameters: parameters);
+  Future<Response<dynamic>> get(
+    String url, {
+    Map<String, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
+  }) {
+    // adding runtime headers
+    headers?.forEach((key, value) {
+      dio.options.headers.putIfAbsent(key!, () => value);
+    });
+
+    return dio.get(
+      url,
+      queryParameters: parameters,
+    );
   }
 
   @override
-  Future<Response<dynamic>> post(String url,
-      {Map<String, dynamic>? parameters}) {
+  Future<Response<dynamic>> post(
+    String url, {
+    Map<String, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
+  }) {
+    // adding runtime headers
+    headers?.forEach((key, value) {
+      dio.options.headers.putIfAbsent(key!, () => value);
+    });
+
     return dio.post(url, data: parameters);
   }
 
   @override
-  Future<Response<dynamic>> put(String url,
-      {Map<String, dynamic>? parameters}) {
+  Future<Response<dynamic>> put(
+    String url, {
+    Map<String, dynamic>? parameters,
+    Map<String?, dynamic>? headers,
+  }) {
+    // adding runtime headers
+    headers?.forEach((key, value) {
+      dio.options.headers.putIfAbsent(key!, () => value);
+    });
     return dio.put(url, data: parameters);
   }
 }
